@@ -1,13 +1,25 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/addCgi/addCgi"
+    "pages/index/index",    
+    "pages/search/search",  
+    "pages/addAddress/addAddress",
+    "pages/applyRefund/applyRefund",
+    "pages/test/test",   
+    "pages/orderDetail/orderDetail",
+    "pages/refundDetail/refundDetail",
+    "pages/orderMap/orderMap",
+    "pages/detail/detail", 
+    "pages/editAddress/editAddress",
+    "pages/address/address",
+    "pages/submitOrder/submitOrder",
+    "pages/evaluate/evaluate",
+    "pages/allEvaluate/allEvaluate",
+    "pages/myPackage/myPackage"
   ],
   "window":{
-    "backgroundColor":"#F6F6F6",
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "Wafer Quick Start",
-    "navigationBarTextStyle":"black"
-  }
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "公司报餐系统",
+    "navigationBarTextStyle":"white"
+  }  
 }
