@@ -176,6 +176,24 @@ Page({
       url: '../setmenu/setmenu'
     })
   },
+  saoma: function() {
+    var that = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res);
+        that.setData({
+          restaurant: true
+        })
+        wx.setNavigationBarTitle({ title: '点餐' })
+      },
+      fail: (res) => {
+        that.setData({
+          restaurant: false
+        });
+      }
+    })
+  },
   toFoodDetail: function() {
     wx.navigateTo({
       url: '../detail/detail',
@@ -246,7 +264,26 @@ Page({
       arr3: arr3
     })
   },
-    // buycar
+  getAddress: function() {
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        if (res.address.length > 10) {
+          res.address = res.address.substr(0, 10) + '...'
+        }
+        that.setData({
+          map_address: res.address
+        })
+      },
+    })
+  },
+  takeOut: function() {
+    this.setData({
+      restaurant: false
+    })
+    wx.setNavigationBarTitle({ title: '点餐' })
+  },
+  // buycar
   del: function (e) {
     var that = this;
     wx.showModal({
