@@ -5,22 +5,11 @@ Page({
     pageType: 1,
     // index
     userInfo: {},
-    open: false,   //是否打开红包
-    page: true,   //红包是否显示 
+    //open: false,   //是否打开红包
+    //page: true,   //红包是否显示 
     orderOrBusiness: 'order',
-    newsarr: [
-      { id: 0, message: "本店新用户立减1元（在线支付专享）" },
-      { id: 1, message: "本店新用户立减2元（在线支付专享）" },
-      { id: 2, message: "本店新用户立减3元（在线支付专享）" },
-      { id: 3, message: "本店新用户立减4元（在线支付专享）" },
-      { id: 4, message: "本店新用户立减5元（在线支付专享）" }
-    ],
-    autoplay: true,
-    interval: 3000,
-    duration: 500,
-    vertical: true,
-    circular: true,
     
+        
     menu: [
       { id: 0, name: "热销" },
       { id: 1, name: "新品" },
@@ -137,38 +126,10 @@ Page({
       searchKey: e.detail.value
     })    
   },
-  searchBtn: function() {
-    var keyWork = this.data.searchKey;
-    wx.redirectTo({
-      url: '../test/test',
-    })
-    wx.request({
-      url: '',
-      data: {
-        
-      },
-      success: function (res) {
-        
-      }
-    })
-  },
   tabChange: function(e) {
     var type = e.currentTarget.dataset.id;
     this.setData({
       orderOrBusiness: type
-    })
-  },
-  //打开红包
-  getPag: function() {
-    this.setData({
-      open: true,
-      page: false
-    })
-  },
-  //关闭红包
-  hasGet: function () {
-    this.setData({
-      open: false
     })
   },
   toSetmenu: function() {

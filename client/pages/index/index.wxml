@@ -1,24 +1,9 @@
-<!--index.wxml-->
+<!--dish.wxml-->
 <view class="container page1" wx:if="{{pageType==1}}">
   <view class="head">
-    <view class="P_input">
-      <input placeholder="搜索您喜欢的商品名称" placeholder-style="color:#999;padding-top: 5rpx;" />
-      <image src="" class="searchPic" catchtap="searchBtn"></image>
-    </view>
-    <swiper autoplay="{{autoplay}}" interval="{{interval}}" circular="{{circular}}" duration="{{duration}}" vertical="{{vertical}}">
-      <block wx:for="{{newsarr}}" wx:key="">
-        <swiper-item>
-          <view class="swiperList">
-            <text class="iconfont icon-news"></text>
-            <text> {{item.message}}</text>
-          </view>
-
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
+   </view>
   <view class="P_title">
-    <view class="{{orderOrBusiness=='order'?'P_order P_active':'P_order'}}" bindtap="tabChange" data-id="order">
+    <view class="{{orderOrBusiness=='order' ? 'P_order P_active' : 'P_order'}}" bindtap="tabChange" data-id="order">
       点菜
     </view>
     <view class="{{orderOrBusiness=='business'?'P_business P_active':'P_business'}}" bindtap="tabChange" data-id="business">
@@ -33,7 +18,6 @@
         </view>
       </block>
     </scroll-view>
-
     <scroll-view class="orderPage-sideBar2" bindscrolltolower="lower" scroll-y="true" style="height:{{height}};overflow-y:scroll">
       <block wx:for="{{arr3}}" wx:key="">
         <view class="menuList menuList2" bindtap="toFoodDetail">
@@ -80,31 +64,10 @@
       <view class="iconfont icon-zhekou">部分商品第二份半价</view>
     </view>
   </view>
-
-
-  <!--新用户专享红包  -->
-  <view class="newUserPag" bindtap="getPag" wx:if="{{page&&orderOrBusiness=='order'}}">
-    <image src="../../img/newuserpag.png"></image>
-  </view>
-  <!--打开红包  -->
-  <view class="openPageBg" wx:if="{{open}}">
-    <view class="openPage">
-      <image src="../../img/pagbg.png" class="Picbg"></image>
-      <image src="../../img/btn.png" class="btn" bindtap="hasGet"></image>
-      <view class="pageLeft">
-        <view>
-          ¥
-          <text class="price">5</text>
-        </view>
-        <view class="smalltext">满30可用</view>
-      </view>
-      <view class="pageRight">
-        <view>新用户专享券</view>
-        <view class="smalltext">有效期至2017/08/02</view>
-      </view>
-    </view>
-  </view>
 </view>
+
+<!--orderDish.wxml-->
+
 
 <!--buycar.wxml-->
 <view class="container page2" wx:if="{{pageType==2}}">
