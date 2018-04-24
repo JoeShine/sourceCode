@@ -2,7 +2,7 @@
 var app = getApp()
 Page({
   data: {
-    pageType: 1,
+    pageType: 2,
     // index
     userInfo: {},
     //open: false,   //是否打开红包
@@ -51,15 +51,46 @@ Page({
     ],
     arr3: [
       { id: 0, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "0", price: "51", message: "配米饭一份哦", message2: "月售330｜好评率100%", message3: [{ id: 0, value: "香辣味" }, { id: 1, value: "盐焗味" }, { id: 2, value: "蒜香味" }, { id: 3, value: "姜葱味" },] },
-      { id: 1, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "0", price: "51", message: "配米饭一份哦", message2: "月售330｜好评率100%", message3: '' },
-      { id: 2, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "0", price: "51", message: "配米饭一份哦", message2: "月售330｜好评率100%", message3: [{ id: 0, value: "香辣味2" }, { id: 1, value: "盐焗味2" }, { id: 2, value: "蒜香味2" }, { id: 3, value: "姜葱味2" },] },
-      { id: 3, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "0", price: "51", message: "配米饭一份哦", message2: "月售330｜好评率100%", message3: [{ id: 0, value: "香辣味3" }, { id: 1, value: "盐焗味3" }, { id: 2, value: "蒜香味3" }, { id: 3, value: "姜葱味3" },] },
-      { id: 4, img: "../../img/food2.jpg", name: "五花肉石锅拌饭", num: "0", price: "51", message: "配米饭一份哦", message2: "月售330｜好评率100%", message3: [{ id: 0, value: "香辣味4" }, { id: 1, value: "盐焗味4" }, { id: 2, value: "蒜香味4" }, { id: 3, value: "姜葱味4" },] },
+      { id: 1, img: "../../img/food2.jpg", name: "牛肉石锅拌饭", num: "0", price: "51", message: "配米饭一份哦", message2: "月售330｜好评率100%", message3: '' },
+      { id: 2, img: "../../img/food2.jpg", name: "鸡肉石锅拌饭", num: "0", price: "51", message: "配米饭一份哦", message2: "月售330｜好评率100%", message3: [{ id: 0, value: "香辣味2" }, { id: 1, value: "盐焗味2" }, { id: 2, value: "蒜香味2" }, { id: 3, value: "姜葱味2" },] },
+      { id: 3, img: "../../img/food2.jpg", name: "羊肉石锅拌饭", num: "0", price: "51", message: "配米饭一份哦", message2: "月售330｜好评率100%", message3: [{ id: 0, value: "香辣味3" }, { id: 1, value: "盐焗味3" }, { id: 2, value: "蒜香味3" }, { id: 3, value: "姜葱味3" },] },
+      { id: 4, img: "../../img/food2.jpg", name: "驴肉石锅拌饭", num: "0", price: "51", message: "配米饭一份哦", message2: "月售330｜好评率100%", message3: [{ id: 0, value: "香辣味4" }, { id: 1, value: "盐焗味4" }, { id: 2, value: "蒜香味4" }, { id: 3, value: "姜葱味4" },] },
     ],
     // order
     orderOk: false,
     // me
-    img: ''
+    img: '',
+
+    //选择订餐基础信息
+   date: "2018-04-25",
+   arrayType: ['早餐','午餐','晚餐'],
+   objectArray:[{
+      id : 0,
+      name : '早餐'
+   },
+   {
+      id: 1,
+      name : '午餐'
+   },
+   {
+      id : 2,
+      name : '晚餐'
+   }],
+   indexType: 1,
+   arrayPeriod: ['12:00~12:15','12:15~12:30','12:30~13:00'],
+   objectArray1:[{
+     id: 0,
+     name: '12:00~12:15'
+   },
+   {
+     id: 1,
+     name: '12:15~12:30'
+   },
+   {
+     id: 2,
+     name: '12:30~13:00'
+   }],
+   indexPeriod: 1
   },
   onLoad: function () {    
     var that = this
@@ -96,6 +127,25 @@ Page({
       }
     });
   },
+  //新增的事件
+  bindDateChange: function(e){
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  bindTypeChange: function(e){
+    console.log('picker发送选择改变，携带值为',e.detail.value)
+    this.setDate({
+        indexType: e.detail.value
+    })
+  },
+  bindPeriodChange: function(e){
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+        indexPeriod: e.detail.value
+    })
+  },
   turnMenu: function(e) {
     var type = e.target.dataset.index;
     console.log(type)
@@ -110,7 +160,7 @@ Page({
     } else if (type == 1 && this.data.restaurant != true) {
       wx.setNavigationBarTitle({ title: '公司报餐系统' })
     } else if (type == 2) {
-      wx.setNavigationBarTitle({ title: '购物车' })
+      wx.setNavigationBarTitle({ title: '点餐' })
     } else if (type == 3) {
       wx.setNavigationBarTitle({ title: '订单' })
     } else if (type == 4) {
@@ -121,17 +171,6 @@ Page({
     })
   },
   // index
-  searchKey: function(e) {
-    this.setData({
-      searchKey: e.detail.value
-    })    
-  },
-  tabChange: function(e) {
-    var type = e.currentTarget.dataset.id;
-    this.setData({
-      orderOrBusiness: type
-    })
-  },
   toSetmenu: function() {
     wx.navigateTo({
       url: '../setmenu/setmenu'
@@ -139,7 +178,7 @@ Page({
   },
   toFoodDetail: function() {
     wx.navigateTo({
-      url: '../detail/detail',
+      //url: '../detail/detail',
     })
   },
   reduce: function (e) {

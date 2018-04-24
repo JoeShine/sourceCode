@@ -117,11 +117,11 @@ Page({
   chooseType: function (e) {
     var type = e.currentTarget.dataset.id;
     if (type == 1 && this.data.restaurant == true) {
-      wx.setNavigationBarTitle({ title: '点餐' })
+      wx.setNavigationBarTitle({ title: '菜谱' })
     } else if (type == 1 && this.data.restaurant != true) {
       wx.setNavigationBarTitle({ title: '公司报餐系统' })
     } else if (type == 2) {
-      wx.setNavigationBarTitle({ title: '购物车' })
+      wx.setNavigationBarTitle({ title: '点餐' })
     } else if (type == 3) {
       wx.setNavigationBarTitle({ title: '订单' })
     } else if (type == 4) {

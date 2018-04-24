@@ -286,7 +286,7 @@
   <view bindtap="chooseType" data-id="2">
     <image src="../../img/icon2.png" wx:if="{{pageType!=2}}"></image>
     <image src="../../img/icon2-active.png" wx:if="{{pageType==2}}"></image>
-    <view class="{{pageType==2?'fixedtext activecolor':'fixedtext'}}">购物车</view>
+    <view class="{{pageType==2?'fixedtext activecolor':'fixedtext'}}">点餐</view>
   </view>
   <view bindtap="chooseType" data-id="3">
     <image src="../../img/icon3.png" wx:if="{{pageType!=3}}"></image>

@@ -1,24 +1,76 @@
 <!--dish.wxml-->
 <view class="container page1" wx:if="{{pageType==1}}">
-  <view class="head">
-   </view>
-  <view class="P_title">
-    <view class="{{orderOrBusiness=='order' ? 'P_order P_active' : 'P_order'}}" bindtap="tabChange" data-id="order">
-      点菜
-    </view>
-    <view class="{{orderOrBusiness=='business'?'P_business P_active':'P_business'}}" bindtap="tabChange" data-id="business">
-      商家
-    </view>
-  </view>
   <view class="P_order_P" wx:if="{{orderOrBusiness=='order'}}">
-    <scroll-view class="orderPage-sideBar" bindscrolltolower="lower" scroll-y="true" style="height:{{height}};overflow-y:scroll">
+    <scroll-view class="orderPage-sideBar" bindscrolltolower="lower" scroll-y="true" style="overflow-y:scroll">
       <block wx:for="{{menu}}" wx:key="">
         <view class="menuList">
           <view class="{{index==orderType?'selected':''}}" data-index="{{index}}" bindtap="turnMenu">{{item.name}}</view>
         </view>
       </block>
     </scroll-view>
-    <scroll-view class="orderPage-sideBar2" bindscrolltolower="lower" scroll-y="true" style="height:{{height}};overflow-y:scroll">
+    <scroll-view class="orderPage-sideBar2" bindscrolltolower="lower" scroll-y="true" style="overflow-y:scroll">
+      <block wx:for="{{arr3}}" wx:key="">
+        <view class="menuList menuList2" bindtap="toFoodDetail">
+          <image src="{{item.img}}"></image>
+          <view class="P_message">
+            <view>{{item.name}}</view>
+            <text>这是测试的菜谱 </text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+
+<!--orderDish.wxml-->
+<view class="container page1" wx:if="{{pageType==2}}">
+  <view class="selectInfo">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="section">
+        <view class="section__title">用餐日期:</view>
+        <view class='form-group'>
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+            <view class="picker">
+              {{date}}
+            </view>
+          </picker>
+        </view>
+        <view class="section__title">用餐类型:</view>
+        <view class='form-group'>
+          <picker bindchange="bindTypeChange" value="{{indexType}}" range="{{arrayType}}">
+            <view class="picker">
+              {{arrayType[indexType]}}
+            </view>
+          </picker>
+        </view>
+        <view class="section__title">用餐时段:</view>
+        <view class='form-group'>
+          <picker bindchange="bindPeriodChange" value="{{indexPeriod}}" range="{{arrayPeriod}}">
+            <view class="picker">
+              {{arrayPeriod[indexPeriod]}}
+            </view>
+          </picker>
+        </view>
+        <view class="section__title">用餐人数:</view>
+        <view class='form-group'>
+          <input type="text" class="input-text" name="username" placeholder="1" />
+        </view>
+      </view>
+      <view class="btn-area">
+        <button form-type="submit" id='b1'>提交</button>
+        <button form-type="reset" id='b2'>取消</button>
+      </view>
+    </form>
+  </view>
+  <view class="P_order_P" wx:if="{{orderOrBusiness=='order'}}">
+    <scroll-view class="orderPage-sideBar" bindscrolltolower="lower" scroll-y="true" style="overflow-y:scroll">
+      <block wx:for="{{menu}}" wx:key="">
+        <view class="menuList">
+          <view class="{{index==orderType?'selected':''}}" data-index="{{index}}" bindtap="turnMenu">{{item.name}}</view>
+        </view>
+      </block>
+    </scroll-view>
+    <scroll-view class="orderPage-sideBar2" bindscrolltolower="lower" scroll-y="true" style="overflow-y:scroll">
       <block wx:for="{{arr3}}" wx:key="">
         <view class="menuList menuList2" bindtap="toFoodDetail">
           <image src="{{item.img}}"></image>
@@ -43,71 +95,9 @@
         </view>
       </block>
     </scroll-view>
-
-  </view>
-  <view class="P_business_P" wx:if="{{orderOrBusiness=='business'}}">
-    <view class="S_top">
-      <view class="S_title">
-        商家信息
-      </view>
-      <view class="iconfont icon-map">广州市番禺区大石街大山郭家坊大街5号101</view>
-      <view class="iconfont icon-time2">配送时间：10:30-20:00</view>
-      <view class="iconfont icon-car">商家提供配送服务</view>
-      <view class="iconfont icon-money">¥10元起送｜配送费¥3</view>
-    </view>
-    <view class="S_top">
-      <view class="S_title">
-        店内活动
-      </view>
-      <view class="iconfont icon-zhekou">满22减17；满50减33（在线支付专享）</view>
-      <view class="iconfont icon-zhekou">折扣商品2.6折起（在线支付专享)</view>
-      <view class="iconfont icon-zhekou">部分商品第二份半价</view>
-    </view>
   </view>
 </view>
 
-<!--orderDish.wxml-->
-
-
-<!--buycar.wxml-->
-<view class="container page2" wx:if="{{pageType==2}}">
-  <view class="settlement">
-    <view class="tlement">
-      <view class="orderLeft">
-        <view class="buycar_icon">
-          <view class="iconfont icon-buycar"></view>
-          <view class="buycar_num">{{buycar_num}}</view>
-        </view>
-        <view class="totalMoney">
-          <view class="price">合计：{{totalMoney}}元</view>
-          <view class="otherMoney">另需5元配送费</view>
-        </view>
-      </view>
-      <view class="toPay" bindtap="toSubmit">
-        <text>去结算</text>
-      </view>
-    </view>
-  </view>
-  <view class="pro" wx:for="{{arr}}" wx:key="" data-id="{{index}}" bindtap="choose">
-    <i class="{{item.selected==true?'iconfont .icon-true active':'iconfont .icon-true'}}"></i>
-    <image src="{{item.img}}"></image>
-    <view class="message">
-      <view>
-        <text>{{item.name}}</text>
-        <text class="orderNum price">¥{{item.price}}</text>
-      </view>
-      <view>
-        <view class="classname" catchtap="donothing">
-          <text class="numBorder" data-id="{{index}}" catchtap="numReduce">-</text>
-          <text class="numMiddle">{{item.num}}</text>
-          <text class="numBorder" data-id="{{index}}" catchtap="numAdd">+</text>
-        </view>
-        <text class="iconfont .icon-del" catchtap="del" data-id="{{index}}"></text>
-      </view>
-    </view>
-  </view>
-  <view class="padding"></view>
-</view>
 <!--order.wxml  -->
 <view class="container page3" wx:if="{{pageType==3}}">
   <view class="allOrder">
@@ -247,19 +237,20 @@
     <text class="phoneColor">1234567</text>
   </view>
 </view>
+
 <view class="bottomfixed">
   <view bindtap="chooseType" data-id="1">
     <image src="../../img/icon1.png" wx:if="{{pageType!=1&&!restaurant}}"></image>
     <image src="../../img/icon1-active.png" wx:if="{{pageType==1&&!restaurant}}"></image>
     <image src="../../img/shop-active.png" wx:if="{{pageType==1&&restaurant}}"></image>
     <image src="../../img/shop.png" wx:if="{{pageType!=1&&restaurant}}"></image>
-    <view class="{{pageType==1?'fixedtext activecolor':'fixedtext'}}" wx:if="{{restaurant}}">点餐</view>
-    <view class="{{pageType==1?'fixedtext activecolor':'fixedtext'}}" wx:if="{{!restaurant}}">点餐</view>
+    <view class="{{pageType==1?'fixedtext activecolor':'fixedtext'}}" wx:if="{{restaurant}}">菜谱</view>
+    <view class="{{pageType==1?'fixedtext activecolor':'fixedtext'}}" wx:if="{{!restaurant}}">菜谱</view>
   </view>
   <view bindtap="chooseType" data-id="2">
     <image src="../../img/icon2.png" wx:if="{{pageType!=2}}"></image>
     <image src="../../img/icon2-active.png" wx:if="{{pageType==2}}"></image>
-    <view class="{{pageType==2?'fixedtext activecolor':'fixedtext'}}">购物车</view>
+    <view class="{{pageType==2?'fixedtext activecolor':'fixedtext'}}">点餐</view>
   </view>
   <view bindtap="chooseType" data-id="3">
     <image src="../../img/icon3.png" wx:if="{{pageType!=3}}"></image>
@@ -290,4 +281,44 @@
       确定
     </view>
   </view>
+</view>
+
+<!--buycar.wxml-->
+<view class="container page2" wx:if="{{pageType==5}}">
+  <view class="settlement">
+    <view class="tlement">
+      <view class="orderLeft">
+        <view class="buycar_icon">
+          <view class="iconfont icon-buycar"></view>
+          <view class="buycar_num">{{buycar_num}}</view>
+        </view>
+        <view class="totalMoney">
+          <view class="price">合计：{{totalMoney}}元</view>
+          <view class="otherMoney">另需5元配送费</view>
+        </view>
+      </view>
+      <view class="toPay" bindtap="toSubmit">
+        <text>去结算</text>
+      </view>
+    </view>
+  </view>
+  <view class="pro" wx:for="{{arr}}" wx:key="" data-id="{{index}}" bindtap="choose">
+    <i class="{{item.selected==true?'iconfont .icon-true active':'iconfont .icon-true'}}"></i>
+    <image src="{{item.img}}"></image>
+    <view class="message">
+      <view>
+        <text>{{item.name}}</text>
+        <text class="orderNum price">¥{{item.price}}</text>
+      </view>
+      <view>
+        <view class="classname" catchtap="donothing">
+          <text class="numBorder" data-id="{{index}}" catchtap="numReduce">-</text>
+          <text class="numMiddle">{{item.num}}</text>
+          <text class="numBorder" data-id="{{index}}" catchtap="numAdd">+</text>
+        </view>
+        <text class="iconfont .icon-del" catchtap="del" data-id="{{index}}"></text>
+      </view>
+    </view>
+  </view>
+  <view class="padding"></view>
 </view>

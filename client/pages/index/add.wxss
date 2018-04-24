@@ -1,0 +1,39 @@
+/**add.wxss**/
+ .page1 .selectInfo {
+  background:#FFFFFF;
+  padding: 20rpx 60rpx 20rpx;
+  height: 24%;
+}
+.section__title{  
+    float: left;  
+    width:20%;  
+}
+.form-group{  
+    float: right;  
+    width: 70%;  
+}
+.input-text{  
+    border: 1px solid #ddd;  
+} 
+.section{  
+    display: flex;
+    flex-flow:wrap;
+    clear: both;  
+    width:110%;  
+    margin-left: 0px;
+} 
+#b1,#b2{
+  font-size:12px;
+  height: 28px;
+  width: 80px;
+  border-radius: 2px;
+}
+.btn-area{
+  display: flex;
+  width: 45%;
+  margin-left: 78px;
+  margin-top: 5px;
+} 
+.picker{
+  border:1px solid  #ddd;
+}
