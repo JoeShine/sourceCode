@@ -369,11 +369,6 @@ Page({
       url: '../logs/logs'
     })
   },
-  toMyPackage: function () {
-    wx.navigateTo({
-      url: '../myPackage/myPackage'
-    })
-  },
   toMyAddress: function () {
     wx.navigateTo({
       url: '../address/address'

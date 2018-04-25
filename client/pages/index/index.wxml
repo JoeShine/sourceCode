@@ -99,7 +99,7 @@
 </view>
 
 <!--order.wxml  -->
-<view class="container page3" wx:if="{{pageType==3}}">
+<view class="container page3" wx:if="{{pageType==6}}">
   <view class="allOrder">
     <view>
       <view class="allTitle">
@@ -219,12 +219,6 @@
 <view class="container page4" wx:if="{{pageType==4}}">
   <view class="mePic">
     <image src="{{img}}"></image>
-  </view>
-  <view class="mePag" bindtap="toMyPackage">
-    <view>
-      <text class="iconfont icon-pag2">  我的红包</text>
-      <text class="iconfont icon-more"></text>
-    </view>
   </view>
   <view class="mePag" bindtap="toMyAddress">
     <view class="meMap">
